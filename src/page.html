@@ -1,0 +1,592 @@
+<style>
+/* Layout: editorial de casa de campo — fotos de borda a borda alternando com faixas creme e café; coluna de 1200px; tipografia fina como o logo */
+:root{
+  --cream:#f4efe7; --paper:#fbf8f3; --ink:#2b211a; --muted:#6f6257; --line:#e2d8cb;
+  --cafe:#2e221b; --cafe-2:#3a2b22; --caramel:#9c6b45; --gold:#c9a26b; --leaf:#2f3b2f;
+  --on-dark:#f4efe7; --on-dark-muted:#cbbfb1;
+  --display:"Italiana","Cormorant Garamond",Georgia,serif;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --wrap:1200px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+[hidden]{display:none!important}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--cafe)}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+.kicker{font-family:var(--sans);font-size:.74rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--caramel)}
+.h2{font-family:var(--display);font-size:clamp(2.3rem,5vw,3.9rem);line-height:1.05;letter-spacing:.005em}
+.h2 em,.it{font-family:var(--serif);font-style:italic;font-weight:500}
+.lead{font-size:1.08rem;color:var(--muted);max-width:56ch}
+section{padding-block:clamp(72px,10vw,136px)}
+.dark{background:var(--cafe);color:var(--on-dark)}
+.dark .lead{color:var(--on-dark-muted)}
+.dark .kicker{color:var(--gold)}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:17px 28px;border:1px solid transparent;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-gold{background:var(--gold);color:var(--cafe)}
+.btn-gold:hover{background:#d8b47f}
+.btn-line{border-color:rgba(244,239,231,.6);color:var(--on-dark)}
+.btn-line:hover{background:var(--on-dark);color:var(--cafe)}
+.btn-dark{background:var(--cafe);color:var(--on-dark)}
+.btn-dark:hover{background:var(--caramel)}
+
+/* Cabeçalho */
+.top{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;color:var(--on-dark);transition:background .35s,box-shadow .35s}
+.top.solid{background:rgba(46,34,27,.96);box-shadow:0 1px 0 rgba(201,162,107,.25)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:18px;transition:padding .35s}
+.top.solid .wrap{padding-block:11px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;line-height:1}
+.logo svg{width:44px;height:44px;flex:none}
+.logo span{display:grid;gap:5px}
+.logo b{font-family:var(--display);font-weight:400;font-size:1.5rem;letter-spacing:.02em}
+.logo small{font-size:.6rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.menu{display:flex;gap:30px;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase}
+.menu a{text-decoration:none;opacity:.85;padding-block:6px;border-bottom:1px solid transparent}
+.menu a:hover{opacity:1;border-color:var(--gold)}
+.top .btn{padding:12px 20px;font-size:.74rem}
+@media (max-width:980px){.menu{display:none}}
+@media (max-width:520px){.top .btn span{display:none}.top .btn{padding:12px}.logo small{letter-spacing:.3em}}
+
+/* Hero */
+.hero{position:relative;min-height:min(100svh,920px);display:flex;align-items:flex-end;color:var(--on-dark);background:var(--cafe);overflow:hidden;padding-block:0}
+.hero picture,.hero picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero picture img{object-position:50% 45%;animation:drift 22s ease-out both}
+@keyframes drift{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(30,22,17,.55) 0%,rgba(30,22,17,0) 22%),
+  linear-gradient(0deg,rgba(30,22,17,.92) 0%,rgba(30,22,17,.55) 38%,rgba(30,22,17,0) 70%)}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-block:150px clamp(48px,8vw,96px);display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:end}
+.hero h1{font-family:var(--display);font-size:clamp(3rem,8.4vw,6.8rem);line-height:.98;letter-spacing:-.005em}
+.hero h1 em{display:block;font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold);font-size:.82em;margin-top:.12em}
+.hero-side{display:grid;gap:26px;justify-items:start}
+.hero-side p{font-size:1.1rem;color:#efe6da;max-width:38ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.rating{display:flex;align-items:center;gap:12px;font-size:.84rem;letter-spacing:.06em;color:#efe6da}
+.rating .stars{color:var(--gold);letter-spacing:3px;font-size:.95rem}
+.rating b{font-family:var(--serif);font-size:1.5rem;font-weight:500;color:#fff;letter-spacing:0}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-top:130px}.hero{min-height:88svh}}
+
+/* Faixa de fatos */
+.facts{background:var(--cafe-2);color:var(--on-dark);padding-block:0;border-top:1px solid rgba(201,162,107,.18)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:34px 24px;display:grid;gap:6px;border-left:1px solid rgba(201,162,107,.18)}
+.fact:first-child{border-left:0;padding-left:0}
+.fact b{font-family:var(--display);font-weight:400;font-size:2.6rem;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.fact span{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-muted)}
+@media (max-width:820px){.facts .wrap{grid-template-columns:1fr 1fr}.fact{border-left:0;padding-left:0;border-top:1px solid rgba(201,162,107,.18)}.fact:nth-child(-n+2){border-top:0}}
+
+/* História */
+.story .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,7vw,110px);align-items:center}
+.story-text{display:grid;gap:24px;min-width:0}
+.story-text p{color:var(--muted)}
+.story-text .sig{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--ink)}
+.story-media{position:relative;min-width:0}
+.story-media .main{aspect-ratio:4/5;width:100%;object-fit:cover}
+.story-media .inset{position:absolute;left:-14%;bottom:-8%;width:46%;aspect-ratio:1;object-fit:cover;border:10px solid var(--paper);box-shadow:0 20px 40px rgba(43,33,26,.18)}
+.story-media figcaption{position:absolute;right:0;top:100%;margin-top:14px;font-family:var(--serif);font-style:italic;color:var(--muted)}
+@media (max-width:900px){.story .wrap{grid-template-columns:1fr}.story-media{margin-left:14%}}
+
+/* Eventos */
+.events{background:var(--cream)}
+.sec-head{display:grid;gap:18px;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head.split{grid-template-columns:1fr 1fr;align-items:end;gap:40px}
+@media (max-width:860px){.sec-head.split{grid-template-columns:1fr}}
+.ev-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.ev{position:relative;overflow:hidden;color:var(--on-dark);min-height:420px;display:flex;align-items:flex-end;text-decoration:none;background:var(--cafe)}
+.ev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.ev::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(30,22,17,.9) 0%,rgba(30,22,17,.2) 55%,rgba(30,22,17,0) 100%)}
+.ev:hover img{transform:scale(1.05)}
+.ev div{position:relative;z-index:2;padding:30px;display:grid;gap:10px}
+.ev h3{font-family:var(--display);font-size:2.1rem;line-height:1}
+.ev p{font-size:.96rem;color:#e8ddcf;max-width:40ch}
+.ev .more{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.ev.a{grid-column:span 4;min-height:540px}
+.ev.b{grid-column:span 2;min-height:540px}
+.ev.c,.ev.d,.ev.e{grid-column:span 2}
+@media (max-width:900px){.ev-grid{grid-template-columns:1fr 1fr}.ev.a{grid-column:span 2;min-height:440px}.ev.b,.ev.c,.ev.d{grid-column:span 1;min-height:380px}.ev.e{grid-column:span 2;min-height:340px}}
+@media (max-width:560px){.ev-grid{grid-template-columns:1fr}.ev.a,.ev.b,.ev.c,.ev.d,.ev.e{grid-column:span 1;min-height:360px}}
+
+/* Espaços */
+.spaces .list{display:grid;gap:clamp(56px,8vw,110px)}
+.space{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,6vw,90px);align-items:center}
+.space:nth-child(even){grid-template-columns:1fr 1.25fr}
+.space:nth-child(even) .space-media{order:2}
+.space-media{display:grid;grid-template-columns:2fr 1fr;gap:12px;min-width:0}
+.space-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.space-media img:first-child{aspect-ratio:auto;min-height:100%}
+.space-media.single{grid-template-columns:1fr}
+.space-media.single img{aspect-ratio:5/4}
+.space-text{display:grid;gap:18px;min-width:0}
+.space-text .num{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--caramel)}
+.space-text h3{font-family:var(--display);font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.05}
+.space-text p{color:var(--muted)}
+.space-text ul{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px;font-size:.95rem}
+.space-text li{display:flex;gap:12px;align-items:baseline}
+.space-text li::before{content:"";width:18px;height:1px;background:var(--gold);flex:none;transform:translateY(-4px)}
+@media (max-width:900px){.space,.space:nth-child(even){grid-template-columns:1fr}.space:nth-child(even) .space-media{order:0}}
+
+/* Faixa de citação com foto */
+.band{position:relative;min-height:560px;display:flex;align-items:center;color:var(--on-dark);overflow:hidden;background:var(--cafe)}
+.band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,22,17,.85) 0%,rgba(30,22,17,.45) 55%,rgba(30,22,17,.1) 100%)}
+.band .wrap{position:relative;z-index:2;width:100%}
+.band blockquote{margin:0;max-width:22ch;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.15}
+.band cite{display:block;margin-top:24px;font-family:var(--sans);font-style:normal;font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+
+/* Galeria */
+.gallery{background:var(--cafe)}
+.g-grid{columns:4 240px;column-gap:12px}
+.g-grid button{display:block;width:100%;margin:0 0 12px;padding:0;border:0;background:none;cursor:zoom-in;break-inside:avoid;overflow:hidden}
+.g-grid img{width:100%;height:auto;transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .4s}
+.g-grid button:hover img{transform:scale(1.04);opacity:.92}
+.g-foot{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.g-foot a{color:var(--gold);text-decoration:none;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem}
+
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(20,15,11,.94);display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.lightbox img{max-height:86vh;max-width:min(1200px,100%);width:auto;object-fit:contain}
+.lb-btn{position:absolute;background:none;border:1px solid rgba(244,239,231,.4);color:var(--on-dark);width:48px;height:48px;font-size:1.3rem;cursor:pointer;display:grid;place-items:center}
+.lb-close{top:calc(18px + env(safe-area-inset-top,0px));right:calc(18px + env(safe-area-inset-right,0px))}
+.lb-prev{left:calc(18px + env(safe-area-inset-left,0px));top:50%;transform:translateY(-50%)}
+.lb-next{right:calc(18px + env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%)}
+
+/* Depoimentos */
+.reviews .wrap{display:grid;gap:56px}
+.r-top{display:grid;grid-template-columns:auto 1fr;gap:clamp(32px,6vw,90px);align-items:start}
+.score{display:grid;gap:8px;justify-items:start;padding-right:clamp(0px,4vw,60px);border-right:1px solid var(--line)}
+.score b{font-family:var(--display);font-weight:400;font-size:6rem;line-height:.9}
+.score .stars{color:var(--caramel);letter-spacing:4px}
+.score span{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.score a{font-size:.88rem;color:var(--caramel)}
+.feature{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.35;font-weight:400;margin:0}
+.feature footer{margin-top:20px;font-family:var(--sans);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.r-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.r{padding:30px 26px 6px 0;display:grid;gap:16px;align-content:start}
+.r + .r{padding-left:26px;border-left:1px solid var(--line)}
+.r p{font-family:var(--serif);font-size:1.18rem;line-height:1.45}
+.r footer{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.r footer b{color:var(--ink);font-weight:500}
+@media (max-width:980px){.r-grid{grid-template-columns:1fr 1fr}.r:nth-child(3){padding-left:0;border-left:0}.r:nth-child(n+3){border-top:1px solid var(--line);margin-top:20px}}
+@media (max-width:680px){.r-top{grid-template-columns:1fr}.score{border-right:0;padding-right:0}.r-grid{grid-template-columns:1fr}.r,.r + .r{padding-left:0;border-left:0}.r + .r{border-top:1px solid var(--line);margin-top:10px}}
+
+/* Reserva */
+.book{background:var(--cream)}
+.book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:start}
+.steps{list-style:none;margin:40px 0 0;padding:0;display:grid;gap:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps .n{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--caramel)}
+.steps b{display:block;font-weight:500;font-size:1.05rem;margin-bottom:2px}
+.steps span{color:var(--muted);font-size:.96rem}
+.form{background:var(--paper);padding:clamp(28px,4vw,48px);display:grid;gap:20px;box-shadow:0 30px 60px -30px rgba(43,33,26,.35);min-width:0}
+.form h3{font-family:var(--display);font-size:2.2rem;line-height:1.05}
+.form > p{color:var(--muted);font-size:.95rem;margin-top:-8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:8px;min-width:0}
+.field label{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select{font:inherit;font-size:1rem;color:var(--ink);background:transparent;border:0;border-bottom:1px solid #cbbcaa;border-radius:0;padding:10px 0;width:100%;min-width:0;-webkit-appearance:none;appearance:none}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--caramel) 50%),linear-gradient(135deg,var(--caramel) 50%,transparent 50%);background-position:calc(100% - 10px) 55%,calc(100% - 5px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+.field input:focus,.field select:focus{outline:0;border-color:var(--caramel)}
+.form .btn{width:100%;margin-top:6px}
+.form small{color:var(--muted);font-size:.82rem;text-align:center}
+@media (max-width:900px){.book .wrap{grid-template-columns:1fr}}
+@media (max-width:440px){.row{grid-template-columns:1fr}}
+
+/* Localização */
+.where{padding-block:0;background:var(--paper)}
+.where-grid{display:grid;grid-template-columns:1.1fr 1fr;min-height:560px}
+.where-media{position:relative;overflow:hidden;background:var(--leaf)}
+.where-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.where-media span{position:absolute;left:24px;bottom:24px;font-family:var(--serif);font-style:italic;color:#fff;font-size:1.1rem;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.where-text{padding:clamp(48px,7vw,100px) max(20px,env(safe-area-inset-right,0px)) clamp(48px,7vw,100px) clamp(28px,6vw,90px);display:grid;gap:26px;align-content:center}
+.where dl{margin:0;display:grid;gap:22px}
+.where dt{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--caramel);font-weight:500}
+.where dd{margin:4px 0 0;font-size:1.08rem}
+.where .btns{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:900px){.where-grid{grid-template-columns:1fr}.where-media{min-height:340px}.where-text{padding-left:max(20px,env(safe-area-inset-left,0px))}}
+
+/* FAQ */
+.faq .wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(32px,6vw,90px)}
+.faq details{border-top:1px solid var(--line);padding:22px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-family:var(--serif);font-size:1.45rem;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--sans);font-weight:300;color:var(--caramel);font-size:1.6rem;line-height:1;transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);margin-top:12px;max-width:60ch}
+@media (max-width:860px){.faq .wrap{grid-template-columns:1fr}}
+
+/* Rodapé */
+.foot{background:var(--cafe);color:var(--on-dark);padding-block:clamp(64px,8vw,96px) calc(40px + env(safe-area-inset-bottom,0px))}
+.foot-cta{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding-bottom:56px;border-bottom:1px solid rgba(201,162,107,.2)}
+.foot-cta h2{font-family:var(--display);font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1}
+.foot-cta h2 em{font-family:var(--serif);font-style:italic;color:var(--gold)}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;padding-top:36px;font-size:.88rem;color:var(--on-dark-muted)}
+.foot-bottom nav{display:flex;flex-wrap:wrap;gap:24px}
+.foot-bottom a{text-decoration:none}
+.foot-bottom a:hover{color:var(--gold)}
+@media (max-width:760px){.foot-cta{grid-template-columns:1fr}}
+
+.fab{position:fixed;z-index:45;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:#25a35a;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .25s}
+.fab:hover{transform:scale(1.06)}
+.fab svg{width:28px;height:28px}
+
+.rise{animation:rise 1.1s cubic-bezier(.2,.7,.2,1) both}
+.rise.d1{animation-delay:.15s}.rise.d2{animation-delay:.3s}.rise.d3{animation-delay:.45s}
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="24" cy="24" r="22.5"/><path d="M9 29c3-6 7-6 10-3s6 3 9 0 7-4 11-1" stroke-linecap="round"/><path d="M12 33c4 0 6-2 8-2s4 2 8 2h10" stroke-linecap="round"/><circle cx="20" cy="27.5" r="2.3"/></g><path d="M16 21.5 L24 13l8 8.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top" id="topo">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Chácara Canto do Dêga, início">
+      <svg><use href="#i-mark"/></svg>
+      <span><b>Canto do Dêga</b><small>Chácara · Eventos</small></span>
+    </a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#eventos">Eventos</a><a href="#espacos">Espaços</a><a href="#galeria">Galeria</a><a href="#avaliacoes">Avaliações</a><a href="#localizacao">Localização</a>
+    </nav>
+    <a class="btn btn-gold js-wa" href="https://wa.me/5542999829019" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span>Consultar data</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <picture>
+      <source media="(max-width:700px)" srcset="img/hero-mobile.webp">
+      <img src="img/hero.webp" alt="Noivos correndo de mãos dadas pelo gramado da chácara, acompanhados de seus cachorros" fetchpriority="high">
+    </picture>
+    <div class="wrap">
+      <h1 class="rise">Grandes dias pedem<em>um lugar à altura.</em></h1>
+      <div class="hero-side">
+        <div class="rating rise d1"><b>4,7</b><span class="stars" aria-hidden="true">★★★★★</span><span>66 avaliações no Google</span></div>
+        <p class="rise d1">Casamentos, 15 anos e confraternizações para até 400 convidados, entre árvores antigas, gramado e piscina. No Jardim Carvalho, em Ponta Grossa.</p>
+        <div class="hero-cta rise d2">
+          <a class="btn btn-gold js-wa" href="https://wa.me/5542999829019" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Consultar data</a>
+          <a class="btn btn-line" href="#espacos">Conhecer o espaço</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="A chácara em números">
+    <div class="wrap">
+      <div class="fact"><b>400</b><span>convidados</span></div>
+      <div class="fact"><b>4,7</b><span>nota no Google</span></div>
+      <div class="fact"><b>66</b><span>avaliações de clientes</span></div>
+      <div class="fact"><b>1</b><span>chácara inteira para o seu evento</span></div>
+    </div>
+  </section>
+
+  <section class="story">
+    <div class="wrap">
+      <div class="story-text">
+        <span class="kicker">Nossa história</span>
+        <h2 class="h2">Um canto com nome <em>de família</em></h2>
+        <p>A Canto do Dêga é cuidada pela Sandra e pelo Edegar, que recebem cada evento como quem abre a porta de casa. Eles acompanham tudo de perto, do primeiro contato até o último convidado ir embora.</p>
+        <p>A chácara tem salão coberto, jardim para cerimônias, varanda, piscina, área de fogo de chão e quartos para quem quer passar a noite. Tudo cercado de verde e a poucos minutos do centro de Ponta Grossa.</p>
+        <p class="sig">Sandra &amp; Edegar</p>
+      </div>
+      <figure class="story-media" style="margin:0">
+        <img class="main" src="img/cerimonia.webp" alt="Cerimônia de casamento no jardim, sob as árvores" loading="lazy">
+        <img class="inset" src="img/balanco.webp" alt="Balanço de madeira na varanda" loading="lazy">
+        <figcaption>Cerimônia no jardim</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="events" id="eventos">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div style="display:grid;gap:18px">
+          <span class="kicker">Eventos</span>
+          <h2 class="h2">Cada celebração, <em>do seu jeito</em></h2>
+        </div>
+        <p class="lead">Do casamento intimista no jardim à festa da empresa com time inteiro, a chácara se adapta ao tamanho e ao estilo do seu evento.</p>
+      </div>
+      <div class="ev-grid">
+        <a class="ev a js-wa" data-msg="Casamento" href="https://wa.me/5542999829019" target="_blank" rel="noopener">
+          <img src="img/casamento.webp" alt="Noivos abraçados no jardim da chácara" loading="lazy">
+          <div><h3>Casamentos</h3><p>Cerimônia ao ar livre sob as árvores e recepção no salão, sem os convidados precisarem trocar de lugar.</p><span class="more">Consultar datas →</span></div>
+        </a>
+        <a class="ev b js-wa" data-msg="Festa de 15 anos" href="https://wa.me/5542999829019" target="_blank" rel="noopener">
+          <img src="img/debutante.webp" alt="Debutante com letreiro luminoso de 15 anos" loading="lazy">
+          <div><h3>15 anos</h3><p>Pista, iluminação e cenário para a noite que ela vai lembrar.</p><span class="more">Consultar datas →</span></div>
+        </a>
+        <a class="ev c js-wa" data-msg="Confraternização de empresa" href="https://wa.me/5542999829019" target="_blank" rel="noopener">
+          <img src="img/empresas.webp" alt="Salão com mesas montadas e luz quente para evento" loading="lazy">
+          <div><h3>Empresas</h3><p>Confraternizações de fim de ano, eventos e integração de equipes.</p><span class="more">Consultar datas →</span></div>
+        </a>
+        <a class="ev d js-wa" data-msg="Festa temática" href="https://wa.me/5542999829019" target="_blank" rel="noopener">
+          <img src="img/junina.webp" alt="Salão decorado para festa junina" loading="lazy">
+          <div><h3>Festas temáticas</h3><p>Arraiá, aniversários e encontros de família com o dia inteiro ao ar livre.</p><span class="more">Consultar datas →</span></div>
+        </a>
+        <a class="ev e js-wa" data-msg="Retiro ou encontro de igreja" href="https://wa.me/5542999829019" target="_blank" rel="noopener">
+          <img src="img/bancos.webp" alt="Bancos de madeira no bosque da chácara" loading="lazy">
+          <div><h3>Retiros e igrejas</h3><p>Estrutura e quartos para encontros, retiros e acampamentos.</p><span class="more">Consultar datas →</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="spaces" id="espacos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Espaços</span>
+        <h2 class="h2">Tudo em um só lugar, <em>do “sim” ao último brinde</em></h2>
+      </div>
+      <div class="list">
+        <article class="space">
+          <div class="space-media">
+            <img src="img/salao-3.webp" alt="Salão de festas com mesas e cadeiras de madeira" loading="lazy">
+            <img src="img/salao.webp" alt="Salão decorado com flores para casamento" loading="lazy">
+          </div>
+          <div class="space-text">
+            <span class="num">I.</span>
+            <h3>Salão de festas</h3>
+            <p>Salão amplo e coberto, com janelas para o verde, pronto para receber a decoração, o buffet e a pista de dança.</p>
+            <ul><li>Para até 400 convidados</li><li>Iluminação pendente e estrutura de madeira</li><li>Espaço para buffet, mesa de doces e palco</li></ul>
+          </div>
+        </article>
+        <article class="space">
+          <div class="space-media">
+            <img src="img/g-cerimonia.webp" alt="Convidados assistindo a uma cerimônia no jardim" loading="lazy">
+            <img src="img/corredor.webp" alt="Corredor de cerimônia montado no gramado" loading="lazy">
+          </div>
+          <div class="space-text">
+            <span class="num">II.</span>
+            <h3>Cerimonial no jardim</h3>
+            <p>Árvores antigas formam o altar natural. O corredor no gramado fica lindo com a luz do fim da tarde.</p>
+            <ul><li>Cerimônias ao ar livre</li><li>Gramado amplo e sombreado</li><li>Varanda com cortinas como alternativa coberta</li></ul>
+          </div>
+        </article>
+        <article class="space">
+          <div class="space-media">
+            <img src="img/casa-piscina.webp" alt="Piscina e casa de acomodações ao amanhecer" loading="lazy">
+            <img src="img/piscina-casa-2.webp" alt="Piscina com a casa de hóspedes ao fundo" loading="lazy">
+          </div>
+          <div class="space-text">
+            <span class="num">III.</span>
+            <h3>Piscina e acomodações</h3>
+            <p>Os convidados aproveitam o dia na piscina, e quem vem de longe pode dormir na própria chácara.</p>
+            <ul><li>Piscina com área de lazer</li><li>Quartos para noivos e convidados</li><li>Estacionamento amplo dentro da chácara</li></ul>
+          </div>
+        </article>
+        <article class="space">
+          <div class="space-media">
+            <img src="img/varanda.webp" alt="Varanda com cortinas e plantas suspensas" loading="lazy">
+            <img src="img/fogo-de-chao.webp" alt="Costela assando no fogo de chão" loading="lazy">
+          </div>
+          <div class="space-text">
+            <span class="num">IV.</span>
+            <h3>Varanda e fogo de chão</h3>
+            <p>Uma varanda com vista para o bosque, ideal para fotos e mini wedding, e espaço para costela no fogo de chão.</p>
+            <ul><li>Cenário pronto para fotos</li><li>Área para fogo de chão e churrasco</li><li>Bosque com bancos de madeira</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Depoimento">
+    <img src="img/noiva-carro.webp" alt="Noiva chegando em carro antigo" loading="lazy">
+    <div class="wrap">
+      <blockquote>“Cada detalhe foi pensado com tanto cuidado que nosso casamento se tornou um dia verdadeiramente mágico.”<cite>Douglas · casamento na chácara</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="gallery dark" id="galeria">
+    <div class="wrap">
+      <div class="sec-head split">
+        <div style="display:grid;gap:18px"><span class="kicker">Galeria</span><h2 class="h2">Momentos que <em>já aconteceram aqui</em></h2></div>
+        <p class="lead">Fotos reais de casamentos, aniversários e confraternizações na Canto do Dêga. Toque em uma foto para ampliar.</p>
+      </div>
+      <div class="g-grid" id="grid">
+        <button type="button"><img src="img/g-beijo.webp" alt="Noivos se beijando no altar sob as árvores" loading="lazy"></button>
+        <button type="button"><img src="img/g-chuva-papel.webp" alt="Entrada dos noivos com chuva de papel" loading="lazy"></button>
+        <button type="button"><img src="img/g-pista.webp" alt="Pista de dança cheia de convidados" loading="lazy"></button>
+        <button type="button"><img src="img/g-noivos.webp" alt="Noivos caminhando no jardim" loading="lazy"></button>
+        <button type="button"><img src="img/g-mesa-doces.webp" alt="Mesa de doces e bolo decorada com flores" loading="lazy"></button>
+        <button type="button"><img src="img/g-votos.webp" alt="Noivos fazendo os votos no jardim" loading="lazy"></button>
+        <button type="button"><img src="img/g-padrinhos.webp" alt="Padrinhos jogando o noivo para o alto" loading="lazy"></button>
+        <button type="button"><img src="img/g-piscina-decor.webp" alt="Piscina decorada com guarda-chuvas e flores" loading="lazy"></button>
+        <button type="button"><img src="img/g-mesa.webp" alt="Noivos na mesa do bolo" loading="lazy"></button>
+        <button type="button"><img src="img/carro-antigo.webp" alt="Carro antigo estacionado no gramado ao entardecer" loading="lazy"></button>
+        <button type="button"><img src="img/g-bolo.webp" alt="Noivos cortando o bolo" loading="lazy"></button>
+        <button type="button"><img src="img/salao-2.webp" alt="Salão iluminado com mesas montadas" loading="lazy"></button>
+        <button type="button"><img src="img/g-noivos-caminhao.webp" alt="Noivos caminhando com balões de coração" loading="lazy"></button>
+        <button type="button"><img src="img/piscina-2.webp" alt="Convidados na beira da piscina" loading="lazy"></button>
+      </div>
+      <div class="g-foot">
+        <span class="it" style="font-size:1.3rem;color:var(--on-dark-muted)">E muitas outras histórias no Instagram.</span>
+        <a href="https://www.instagram.com/chacaracantododega" target="_blank" rel="noopener">@chacaracantododega →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="avaliacoes">
+    <div class="wrap">
+      <div class="sec-head"><span class="kicker">Avaliações</span><h2 class="h2">Quem celebrou aqui, <em>recomenda</em></h2></div>
+      <div class="r-top">
+        <div class="score">
+          <b>4,7</b><span class="stars" aria-label="5 estrelas">★★★★★</span><span>66 avaliações no Google</span>
+          <a href="https://maps.app.goo.gl/Kh5mNGTSuzv8zX2eA" target="_blank" rel="noopener">Ler todas no Google</a>
+        </div>
+        <blockquote class="feature">“Desde o primeiro contato, a Sandra nos acolheu com tanta atenção e carinho que nos sentimos completamente seguros para organizar cada detalhe do nosso dia. A estrutura é simplesmente maravilhosa: espaços amplos, bem cuidados e cheios de charme.”<footer>Douglas Tonegawa · Casamento</footer></blockquote>
+      </div>
+      <div class="r-grid">
+        <figure class="r" style="margin:0"><p>“Todos os convidados elogiaram a estrutura, a beleza e o cuidado do lugar. Os quartos são muito confortáveis.”</p><footer><b>Guilherme B.</b> · Casamento</footer></figure>
+        <figure class="r" style="margin:0"><p>“Chácara linda, tudo muito bem cuidado. Proprietários sempre nos auxiliando, antes e depois da festa.”</p><footer><b>Larissa M.</b> · Festa</footer></figure>
+        <figure class="r" style="margin:0"><p>“Fizemos o aniversário de 15 anos da nossa princesa lá. Lugar lindo e maravilhoso, fomos muito bem atendidos.”</p><footer><b>Telma F.</b> · 15 anos</footer></figure>
+        <figure class="r" style="margin:0"><p>“Espaço super aconchegante para lazer, grande e organizado.”</p><footer><b>Hadassa F.</b> · Lazer</footer></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="reservar">
+    <div class="wrap">
+      <div>
+        <span class="kicker">Como reservar</span>
+        <h2 class="h2" style="margin-top:18px">Sua data <em>em três passos</em></h2>
+        <ol class="steps">
+          <li><span class="n">1</span><div><b>Consulte a data</b><span>Conte o tipo de evento, a data e quantos convidados você espera.</span></div></li>
+          <li><span class="n">2</span><div><b>Venha conhecer</b><span>Agende uma visita e caminhe pelo salão, pelo jardim e pela piscina.</span></div></li>
+          <li><span class="n">3</span><div><b>Garanta o seu dia</b><span>Feche o contrato e a chácara fica reservada para o seu evento.</span></div></li>
+        </ol>
+      </div>
+      <form class="form" id="consulta" aria-labelledby="form-titulo" novalidate>
+        <h3 id="form-titulo">Consultar disponibilidade</h3>
+        <p>Preencha e enviamos sua mensagem pronta pelo WhatsApp.</p>
+        <div class="field"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" placeholder="Ana Souza"></div>
+        <div class="field"><label for="f-tipo">Tipo de evento</label>
+          <select id="f-tipo" name="tipo"><option>Casamento</option><option>Festa de 15 anos</option><option>Aniversário</option><option>Confraternização de empresa</option><option>Retiro ou encontro de igreja</option><option>Outro evento</option></select></div>
+        <div class="row">
+          <div class="field"><label for="f-data">Data desejada</label><input id="f-data" name="data" type="date"></div>
+          <div class="field"><label for="f-conv">Convidados</label><input id="f-conv" name="convidados" type="number" min="1" max="400" inputmode="numeric" placeholder="150"></div>
+        </div>
+        <a class="btn btn-dark" id="f-enviar" href="https://wa.me/5542999829019" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Enviar pelo WhatsApp</a>
+        <small>Atendimento direto com a Sandra · (42) 99982-9019</small>
+      </form>
+    </div>
+  </section>
+
+  <section class="where" id="localizacao">
+    <div class="where-grid">
+      <div class="where-media">
+        <img src="img/aerea.webp" alt="Vista aérea da chácara com salão, piscina e área verde" loading="lazy">
+        <span>Vista aérea da chácara</span>
+      </div>
+      <div class="where-text">
+        <span class="kicker">Localização</span>
+        <h2 class="h2">Perto do centro, <em>longe da pressa</em></h2>
+        <dl>
+          <div><dt>Endereço</dt><dd>R. Doutor Washington Subtil Chueire, 755<br>Jardim Carvalho · Ponta Grossa – PR · 84017-220</dd></div>
+          <div><dt>WhatsApp</dt><dd>(42) 99982-9019</dd></div>
+          <div><dt>Instagram</dt><dd>@chacaracantododega</dd></div>
+        </dl>
+        <div class="btns">
+          <a class="btn btn-dark" href="https://www.google.com/maps/dir/?api=1&amp;destination=-25.0452472,-50.1285344" target="_blank" rel="noopener">Traçar rota</a>
+          <a class="btn" style="border-color:var(--ink)" href="https://maps.app.goo.gl/Kh5mNGTSuzv8zX2eA" target="_blank" rel="noopener">Ver no Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div style="display:grid;gap:18px;align-content:start"><span class="kicker">Dúvidas</span><h2 class="h2">Perguntas <em>frequentes</em></h2></div>
+      <div>
+        <details open><summary>Quantos convidados a chácara comporta?</summary><p>Até 400 convidados. Para eventos menores, o espaço se adapta e fica aconchegante do mesmo jeito.</p></details>
+        <details><summary>Dá para fazer a cerimônia e a festa no mesmo lugar?</summary><p>Sim. A cerimônia acontece no jardim, sob as árvores, e a recepção segue no salão ao lado.</p></details>
+        <details><summary>Os convidados podem dormir na chácara?</summary><p>Sim, há acomodações para noivos e convidados. Consulte a disponibilidade de quartos para a sua data.</p></details>
+        <details><summary>Posso visitar antes de fechar?</summary><p>Pode e deve. Chame no WhatsApp e agende um horário para conhecer o espaço com calma.</p></details>
+        <details><summary>Tem estacionamento?</summary><p>Sim, estacionamento amplo dentro da chácara.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta">
+      <h2>Vamos marcar <em>a sua data?</em></h2>
+      <a class="btn btn-gold js-wa" href="https://wa.me/5542999829019" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Falar no WhatsApp</a>
+    </div>
+    <div class="foot-bottom">
+      <a class="logo" href="#inicio" style="color:var(--on-dark)"><svg><use href="#i-mark"/></svg><span><b>Canto do Dêga</b><small>Chácara · Eventos</small></span></a>
+      <nav aria-label="Rodapé">
+        <a href="https://www.instagram.com/chacaracantododega" target="_blank" rel="noopener">Instagram</a>
+        <a class="js-wa" href="https://wa.me/5542999829019" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://maps.app.goo.gl/Kh5mNGTSuzv8zX2eA" target="_blank" rel="noopener">Google Maps</a>
+      </nav>
+      <span>© <span id="ano">2026</span> Chácara Canto do Dêga · Ponta Grossa – PR</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab js-wa" href="https://wa.me/5542999829019" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <img id="lb-img" alt="">
+  <button class="lb-btn lb-close" type="button" id="lb-close" aria-label="Fechar">✕</button>
+  <button class="lb-btn lb-prev" type="button" id="lb-prev" aria-label="Foto anterior">‹</button>
+  <button class="lb-btn lb-next" type="button" id="lb-next" aria-label="Próxima foto">›</button>
+</div>
+
+<script>
+(function(){
+  var PHONE="5542999829019";
+  var wa=function(m){return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(m);};
+  var base="Olá! Vi o site da Chácara Canto do Dêga e gostaria de consultar uma data.";
+  document.querySelectorAll(".js-wa").forEach(function(a){
+    var t=a.getAttribute("data-msg");
+    a.href=wa(t?"Olá! Vi o site da Chácara Canto do Dêga e gostaria de consultar uma data para: "+t+".":base);
+  });
+
+  var top=document.getElementById("topo");
+  var onScroll=function(){top.classList.toggle("solid",window.scrollY>40);};
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+
+  var f={nome:document.getElementById("f-nome"),tipo:document.getElementById("f-tipo"),data:document.getElementById("f-data"),conv:document.getElementById("f-conv")};
+  var send=document.getElementById("f-enviar");
+  var upd=function(){
+    var m="Olá! Vi o site da Chácara Canto do Dêga e gostaria de consultar uma data.";
+    if(f.nome.value.trim())m+="\nNome: "+f.nome.value.trim();
+    m+="\nEvento: "+f.tipo.value;
+    if(f.data.value){var p=f.data.value.split("-");m+="\nData: "+p[2]+"/"+p[1]+"/"+p[0];}
+    if(f.conv.value)m+="\nConvidados: "+f.conv.value;
+    send.href=wa(m);
+  };
+  Object.keys(f).forEach(function(k){f[k].addEventListener("input",upd);f[k].addEventListener("change",upd);});
+  document.getElementById("consulta").addEventListener("submit",function(e){e.preventDefault();});
+  upd();
+
+  var imgs=[].slice.call(document.querySelectorAll("#grid img"));
+  var lb=document.getElementById("lb"),li=document.getElementById("lb-img"),cur=0;
+  var show=function(i){cur=(i+imgs.length)%imgs.length;li.src=imgs[cur].src;li.alt=imgs[cur].alt;};
+  imgs.forEach(function(im,i){im.parentNode.addEventListener("click",function(){show(i);lb.hidden=false;document.getElementById("lb-close").focus();});});
+  var close=function(){lb.hidden=true;imgs[cur].parentNode.focus();};
+  document.getElementById("lb-close").addEventListener("click",close);
+  document.getElementById("lb-prev").addEventListener("click",function(){show(cur-1);});
+  document.getElementById("lb-next").addEventListener("click",function(){show(cur+1);});
+  lb.addEventListener("click",function(e){if(e.target===lb)close();});
+  document.addEventListener("keydown",function(e){if(lb.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowLeft")show(cur-1);if(e.key==="ArrowRight")show(cur+1);});
+
+  document.getElementById("ano").textContent=new Date().getFullYear();
+})();
+</script>
